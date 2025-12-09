@@ -1,0 +1,151 @@
+/************************************************************************************************
+Copyright (c) 2025, Lucas Kirschner <kirschnerlucas1@gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+associated documentation files (the "Software"), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge, publish, distribute,
+sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial
+portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES
+OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+SPDX-License-Identifier: MIT
+*************************************************************************************************/
+
+/** @file main.c
+ ** @brief Prueba básica del IP SPI Master vía interfaz AXI.
+ **
+ ** Este archivo implementa una aplicación sencilla que envía y recibe bytes utilizando
+ ** un periférico SPI Master diseñado en VHDL y expuesto mediante AXI4-Lite.
+ ** La aplicación transmite un byte incremental, espera la recepción por loopback
+ ** o esclavo SPI, y muestra los valores por UART.
+ **
+ ** @addtogroup spi_test_app
+ ** @{ */
+
+/* === Headers files inclusions =============================================================== */
+#include "xparameters.h"
+#include "spi_master_ip.h"
+#include "xil_io.h"
+#include "xil_printf.h"
+#include "sleep.h"
+
+/* === Macros definitions ====================================================================== */
+/** @brief Dirección base del IP SPI Master en el espacio AXI. */
+#define SPI_BASEADDR   XPAR_SPI_MASTER_IP_1_S_AXI_BASEADDR
+
+/** @brief Offset del registro que contiene el byte a transmitir. */
+#define REG0_TX_DATA   SPI_MASTER_IP_S_AXI_SLV_REG0_OFFSET
+/** @brief Offset del registro que activa la transferencia (tx_dv). */
+#define REG1_TX_DV     SPI_MASTER_IP_S_AXI_SLV_REG1_OFFSET
+/** @brief Offset del registro que indica si el módulo está listo para transmitir (tx_rdy). */
+#define REG2_TX_RDY    SPI_MASTER_IP_S_AXI_SLV_REG2_OFFSET
+/** @brief Offset del registro que contiene el dato recibido. */
+#define REG3_RX_DATA   SPI_MASTER_IP_S_AXI_SLV_REG3_OFFSET
+/** @brief Offset del registro que indica disponibilidad de dato recibido (rx_dv). */
+#define REG4_RX_DV     SPI_MASTER_IP_S_AXI_SLV_REG4_OFFSET
+
+/** @brief Byte de prueba recomendado para verificar loopback. */
+#define TEST_BYTE       0xA5
+
+/* === Private function declarations =========================================================== */
+/**
+ * @brief Espera ocupada hasta que el módulo SPI indique disponibilidad para transmitir.
+ *
+ * El bit tx_rdy_i del registro slv_reg2 (bit 0) debe ser igual a 1 para habilitar una nueva
+ * transmisión.
+ */
+static void spi_wait_tx_ready(void);
+
+/**
+ * @brief Inicia una transferencia SPI cargando un byte y generando el pulso de tx_dv.
+ *
+ * @param tx_byte Byte a transmitir a través del módulo SPI.
+ */
+static void spi_start_transfer(uint8_t tx_byte);
+
+/**
+ * @brief Espera la llegada de un dato válido y lo devuelve.
+ *
+ * Este procedimiento espera hasta que rx_dv_i (slv_reg4 bit 0) valga 1 y luego lee el
+ * byte recibido desde slv_reg3.
+ *
+ * @return Byte recibido desde el módulo SPI.
+ */
+static uint8_t spi_wait_and_read_rx(void);
+
+/* === Public function implementation ========================================================== */
+
+int main(void)
+{
+    uint8_t tx_byte = 0x00;
+    uint8_t rx_byte;
+
+    xil_printf("--- Prueba transmit/receive SPI Master IP ---\r\n");
+
+    while (1)
+    {
+        /* 1) Esperar disponibilidad del transmisor */
+        spi_wait_tx_ready();
+
+        /* 2) Iniciar transmisión del byte actual */
+        spi_start_transfer(tx_byte);
+
+        /* 3) Esperar y leer el byte recibido */
+        rx_byte = spi_wait_and_read_rx();
+
+        /* 4) Mostrar resultado */
+        xil_printf("tx_byte = 0x%02X, rx_byte = 0x%02X\r\n", tx_byte, rx_byte);
+
+        /* 5) Pausar entre transferencias */
+        sleep(5);
+
+        /* 6) Incrementar el dato a transmitir */
+        tx_byte += 1;
+    }
+
+    return 0;
+}
+
+/* === Private function implementation ========================================================== */
+
+static void spi_wait_tx_ready(void)
+{
+    /* Espera bloqueante hasta que slv_reg2 indique disponibilidad */
+    while(!SPI_MASTER_IP_mReadReg(SPI_BASEADDR, REG2_TX_RDY)) {}
+}
+
+static void spi_start_transfer(uint8_t tx_byte)
+{
+    /* Cargar byte a transmitir */
+    SPI_MASTER_IP_mWriteReg(SPI_BASEADDR, REG0_TX_DATA, (uint32_t)tx_byte);
+
+    /* Pulso de 1 ciclo en tx_dv */
+    SPI_MASTER_IP_mWriteReg(SPI_BASEADDR, REG1_TX_DV, 0x1U);
+    SPI_MASTER_IP_mWriteReg(SPI_BASEADDR, REG1_TX_DV, 0x0U);
+}
+
+static uint8_t spi_wait_and_read_rx(void)
+{
+    uint8_t rx_byte;
+
+    /* Esperar hasta que rx_dv_i == 1 */
+    while(SPI_MASTER_IP_mReadReg(SPI_BASEADDR, REG4_RX_DV) != 0x1U) {}
+
+    /* Leer dato recibido */
+    rx_byte = (uint8_t)SPI_MASTER_IP_mReadReg(SPI_BASEADDR, REG3_RX_DATA);
+
+    return rx_byte;
+}
+
+/* === End of documentation ==================================================================== */
+
+/** @} end of addtogroup spi_test_app */
+

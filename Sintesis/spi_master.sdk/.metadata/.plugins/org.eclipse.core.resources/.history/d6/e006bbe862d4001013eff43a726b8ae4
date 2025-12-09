@@ -1,0 +1,94 @@
+/*
+ * main.c
+ *
+ *  Prueba básica del IP SPI Master vía AXI
+ */
+
+#include "xparameters.h"
+#include "spi_master_ip.h"
+#include "xil_io.h"
+#include "xil_printf.h"
+#include "sleep.h"
+
+#define SPI_BASEADDR    XPAR_SPI_MASTER_IP_0_S_AXI_BASEADDR
+#define SPI_BASEADDR	XPAR_SPI_MASTER_IP_1_S_AXI_BASEADDR
+#define REG0_TX_DATA	SPI_MASTER_IP_S_AXI_SLV_REG0_OFFSET
+#define REG1_TX_DV		SPI_MASTER_IP_S_AXI_SLV_REG1_OFFSET
+#define REG2_TX_RDY		SPI_MASTER_IP_S_AXI_SLV_REG2_OFFSET
+#define REG3_RX_DATA	SPI_MASTER_IP_S_AXI_SLV_REG3_OFFSET
+#define REG4_RX_DV		SPI_MASTER_IP_S_AXI_SLV_REG4_OFFSET
+#define TEST_BYTE       0xA5
+
+// Funciones estáticas
+static void spi_wait_tx_ready(void);
+static void spi_start_transfer(uint8_t tx_byte);
+static uint8_t spi_wait_and_read_rx(void);
+
+int main(void)
+{
+    uint8_t tx_byte = 0x00;
+    uint8_t rx_byte;
+
+    xil_printf("--- Prueba transmit/receive SPI Master IP ---\r\n");
+
+    while (1)
+    {
+        // 1) Esperar a que el módulo esté listo para transmitir
+        spi_wait_tx_ready();
+
+        // 2) Iniciar la transferencia con el byte de prueba
+        spi_start_transfer(tx_byte);
+
+        // 3) Esperar a que llegue un dato y leerlo
+        rx_byte = spi_wait_and_read_rx();
+
+        // 4) Mostrar dato transmitido y recibido
+        xil_printf("tx_byte = 0x%02X, rx_byte = 0x%02X\r\n", tx_byte, rx_byte);
+
+        // 5) Pequeña pausa entre transferencias
+        sleep(1);   // espera 1 segundo
+
+        // 6) Incremento dato a transmitir
+        tx_byte += 1;
+    }
+
+    return 0;
+}
+
+/**
+ * @brief Espera ocupada hasta que tx_rdy_i == 1 (bit 0 de slv_reg2).
+ */
+static void spi_wait_tx_ready(void)
+{
+	while(SPI_MASTER_IP_mReadReg(SPI_BASEADDR,REG2_TX_RDY != 0x1U)){}
+}
+
+/**
+ * @brief Carga el dato en slv_reg0 y genera un pulso de 1 ciclo en tx_dv (slv_reg1 bit 0).
+ */
+static void spi_start_transfer(uint8_t tx_byte)
+{
+    // Escribo el dato a transmitir en los 8 bits menos significativos de slv_reg0
+	SPI_MASTER_IP_mWriteReg(SPI_BASEADDR, REG0_TX_DATA, (uint32_t)tx_data);
+
+    // Genero un pulso en tx_dv: escribir 1 y luego 0
+	SPI_MASTER_IP_mWriteReg(SPI_BASEADDR, REG1_TX_DV, 0x1U);
+	SPI_MASTER_IP_mWriteReg(SPI_BASEADDR, REG1_TX_DV, 0x0U);
+}
+
+/**
+ * @brief Espera rx_dv_i == 1 (bit 0 de slv_reg4) y luego lee slv_reg3 (dato recibido).
+ * @return Byte recibido por SPI.
+ */
+static uint8_t spi_wait_and_read_rx(void)
+{
+	uint8_t rx_byte;
+
+    // Esperar a que llegue un dato válido
+    while(SPI_MASTER_IP_mReadReg(SPI_BASEADDR,REG4_RX_DV) != 0x1U){}
+
+    // Leer el dato recibido (8 bits menos significativos de slv_reg3)
+    rx_byte = (uint8_t)SPI_MASTER_IP_mReadReg(SPI_BASEADDR,REG3_RX_DATA);
+
+    return rx_byte + 1;
+}

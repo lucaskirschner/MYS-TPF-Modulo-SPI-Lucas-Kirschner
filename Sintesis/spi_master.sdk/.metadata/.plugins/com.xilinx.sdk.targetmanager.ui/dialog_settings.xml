@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="Digilent Arty Z7 003017A4C8ABA/2-xc7z010" key="spi_master_wrapper_hw_platform_0-device"/>
+	<item value="spi_master_wrapper.bit" key="spi_master_wrapper_hw_platform_0-bitFile"/>
+	<item value="false" key="spi_master_wrapper_hw_platform_0-partial_bit"/>
+	<item value="" key="spi_master_wrapper_hw_platform_0-bmmFile"/>
+	<item value="spi_master_wrapper_hw_platform_0" key="programfpga.hwplatform"/>
+	<item value="server" key="spi_master_wrapper_hw_platform_0-target"/>
+</section>

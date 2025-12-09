@@ -1,0 +1,730 @@
+08:57:25 INFO  : Registering command handlers for SDK TCF services
+08:57:25 INFO  : Launching XSCT server: xsct.bat -interactive D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\temp_xsdb_launch_script.tcl
+08:57:26 INFO  : XSCT server has started successfully.
+08:57:27 INFO  : Successfully done setting XSCT server connection channel  
+08:57:27 INFO  : Processing command line option -hwspec D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper.hdf.
+08:57:27 INFO  : Successfully done setting SDK workspace  
+09:00:18 INFO  : Connected to target on host 'lseserver.ddns.net' and port '3121'.
+09:00:23 INFO  : Connected to target on host 'lseserver.ddns.net' and port '3121'.
+09:00:28 INFO  : Connected to target on host 'lseserver.ddns.net' and port '3121'.
+09:00:28 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+09:00:40 INFO  : FPGA configured successfully with bitstream "D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/spi_master_wrapper.bit"
+09:01:17 INFO  : Connected to target on host 'lseserver.ddns.net' and port '3121'.
+09:01:21 INFO  : Connected to target on host 'lseserver.ddns.net' and port '3121'.
+09:01:41 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+09:01:41 INFO  : 'fpga -state' command is executed.
+09:01:43 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+09:01:43 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+09:02:33 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+09:02:33 INFO  : 'jtag frequency' command is executed.
+09:02:33 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+09:02:33 INFO  : Context for 'APU' is selected.
+09:02:34 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+09:02:34 INFO  : 'configparams force-mem-access 1' command is executed.
+09:02:34 INFO  : Context for 'APU' is selected.
+09:02:35 INFO  : 'stop' command is executed.
+09:03:08 INFO  : 'ps7_init' command is executed.
+09:03:09 INFO  : 'ps7_post_config' command is executed.
+09:03:09 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:03:10 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+09:03:10 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:03:10 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+09:03:10 INFO  : 'configparams force-mem-access 0' command is executed.
+09:03:10 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+09:03:11 INFO  : Memory regions updated for context APU
+09:03:11 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:03:11 INFO  : 'con' command is executed.
+09:03:11 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+09:03:11 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+09:04:21 INFO  : Disconnected from the channel tcfchan#2.
+09:04:23 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+09:04:23 INFO  : 'fpga -state' command is executed.
+09:04:23 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+09:04:24 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+09:04:24 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+09:04:24 INFO  : 'jtag frequency' command is executed.
+09:04:24 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+09:04:24 INFO  : Context for 'APU' is selected.
+09:04:26 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+09:04:26 INFO  : 'configparams force-mem-access 1' command is executed.
+09:04:26 INFO  : Context for 'APU' is selected.
+09:04:26 INFO  : 'stop' command is executed.
+09:05:01 INFO  : 'ps7_init' command is executed.
+09:05:01 INFO  : 'ps7_post_config' command is executed.
+09:05:01 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:05:02 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+09:05:02 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:05:03 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+09:05:03 INFO  : 'configparams force-mem-access 0' command is executed.
+09:05:03 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+09:05:04 INFO  : Memory regions updated for context APU
+09:05:04 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:05:04 INFO  : 'con' command is executed.
+09:05:04 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+09:05:04 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+09:14:15 INFO  : Disconnected from the channel tcfchan#3.
+09:14:16 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+09:14:16 INFO  : 'fpga -state' command is executed.
+09:14:17 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+09:14:17 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+09:14:17 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+09:14:17 INFO  : 'jtag frequency' command is executed.
+09:14:17 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+09:14:18 INFO  : Context for 'APU' is selected.
+09:14:19 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+09:14:19 INFO  : 'configparams force-mem-access 1' command is executed.
+09:14:20 INFO  : Context for 'APU' is selected.
+09:14:20 INFO  : 'stop' command is executed.
+09:14:55 INFO  : 'ps7_init' command is executed.
+09:14:56 INFO  : 'ps7_post_config' command is executed.
+09:14:56 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:14:56 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+09:14:56 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:14:57 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+09:14:57 INFO  : 'configparams force-mem-access 0' command is executed.
+09:14:57 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+09:14:58 INFO  : Memory regions updated for context APU
+09:14:58 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:14:58 INFO  : 'con' command is executed.
+09:14:58 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+09:14:58 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+09:29:53 INFO  : Disconnected from the channel tcfchan#4.
+09:29:54 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+09:29:54 INFO  : 'fpga -state' command is executed.
+09:29:55 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+09:29:55 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+09:29:55 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+09:29:56 INFO  : 'jtag frequency' command is executed.
+09:29:56 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+09:29:57 INFO  : Context for 'APU' is selected.
+09:29:58 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+09:29:58 INFO  : 'configparams force-mem-access 1' command is executed.
+09:29:58 INFO  : Context for 'APU' is selected.
+09:29:59 INFO  : 'stop' command is executed.
+09:30:29 INFO  : 'ps7_init' command is executed.
+09:30:30 INFO  : 'ps7_post_config' command is executed.
+09:30:30 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:30:30 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+09:30:30 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:30:31 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+09:30:31 INFO  : 'configparams force-mem-access 0' command is executed.
+09:30:31 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+09:30:32 INFO  : Memory regions updated for context APU
+09:30:32 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:30:32 INFO  : 'con' command is executed.
+09:30:32 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+09:30:32 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+15:23:51 INFO  : Connected to target on host 'lseserver.ddns.net' and port '3121'.
+15:23:52 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+15:24:01 INFO  : FPGA configured successfully with bitstream "D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/spi_master_wrapper.bit"
+15:24:55 INFO  : Disconnected from the channel tcfchan#5.
+15:24:57 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+15:24:57 INFO  : 'fpga -state' command is executed.
+15:24:57 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+15:24:57 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+15:24:57 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+15:24:58 INFO  : 'jtag frequency' command is executed.
+15:24:58 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+15:24:58 INFO  : Context for 'APU' is selected.
+15:25:00 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+15:25:00 INFO  : 'configparams force-mem-access 1' command is executed.
+15:25:00 INFO  : Context for 'APU' is selected.
+15:25:00 INFO  : 'stop' command is executed.
+15:25:34 INFO  : 'ps7_init' command is executed.
+15:25:35 INFO  : 'ps7_post_config' command is executed.
+15:25:36 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:25:36 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+15:25:36 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:25:37 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+15:25:37 INFO  : 'configparams force-mem-access 0' command is executed.
+15:25:37 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+15:25:38 INFO  : Memory regions updated for context APU
+15:25:38 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:25:38 INFO  : 'con' command is executed.
+15:25:38 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+15:25:38 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+15:27:00 INFO  : Disconnected from the channel tcfchan#6.
+15:27:01 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+15:27:01 INFO  : 'fpga -state' command is executed.
+15:27:01 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+15:27:02 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+15:27:02 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+15:27:02 INFO  : 'jtag frequency' command is executed.
+15:27:02 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+15:27:03 INFO  : Context for 'APU' is selected.
+15:27:04 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+15:27:04 INFO  : 'configparams force-mem-access 1' command is executed.
+15:27:04 INFO  : Context for 'APU' is selected.
+15:27:05 INFO  : 'stop' command is executed.
+15:27:38 INFO  : 'ps7_init' command is executed.
+15:27:39 INFO  : 'ps7_post_config' command is executed.
+15:27:39 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:27:40 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+15:27:40 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:27:41 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+15:27:41 INFO  : 'configparams force-mem-access 0' command is executed.
+15:27:41 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+15:27:41 INFO  : Memory regions updated for context APU
+15:27:42 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:27:42 INFO  : 'con' command is executed.
+15:27:42 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+15:27:42 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+15:29:03 INFO  : Disconnected from the channel tcfchan#7.
+15:29:04 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+15:29:05 INFO  : 'fpga -state' command is executed.
+15:29:05 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+15:29:05 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+15:29:05 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+15:29:05 INFO  : 'jtag frequency' command is executed.
+15:29:05 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+15:29:06 INFO  : Context for 'APU' is selected.
+15:29:08 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+15:29:08 INFO  : 'configparams force-mem-access 1' command is executed.
+15:29:08 INFO  : Context for 'APU' is selected.
+15:29:09 INFO  : 'stop' command is executed.
+15:29:42 INFO  : 'ps7_init' command is executed.
+15:29:42 INFO  : 'ps7_post_config' command is executed.
+15:29:42 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:29:43 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+15:29:43 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:29:44 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+15:29:44 INFO  : 'configparams force-mem-access 0' command is executed.
+15:29:44 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+15:29:45 INFO  : Memory regions updated for context APU
+15:29:45 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:29:45 INFO  : 'con' command is executed.
+15:29:45 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+15:29:45 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+15:37:47 INFO  : Disconnected from the channel tcfchan#8.
+15:37:49 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+15:37:49 INFO  : 'fpga -state' command is executed.
+15:37:49 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+15:37:49 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+15:37:49 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+15:37:49 INFO  : 'jtag frequency' command is executed.
+15:37:49 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+15:37:50 INFO  : Context for 'APU' is selected.
+15:37:51 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+15:37:51 INFO  : 'configparams force-mem-access 1' command is executed.
+15:37:52 INFO  : Context for 'APU' is selected.
+15:37:52 INFO  : 'stop' command is executed.
+15:38:25 INFO  : 'ps7_init' command is executed.
+15:38:26 INFO  : 'ps7_post_config' command is executed.
+15:38:26 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:38:27 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+15:38:27 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:38:27 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+15:38:28 INFO  : 'configparams force-mem-access 0' command is executed.
+15:38:28 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+15:38:28 INFO  : Memory regions updated for context APU
+15:38:28 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:38:28 INFO  : 'con' command is executed.
+15:38:28 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+15:38:28 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+15:39:28 INFO  : Disconnected from the channel tcfchan#9.
+15:39:29 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+15:39:29 INFO  : 'fpga -state' command is executed.
+15:39:30 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+15:39:30 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+15:39:30 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+15:39:30 INFO  : 'jtag frequency' command is executed.
+15:39:30 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+15:39:31 INFO  : Context for 'APU' is selected.
+15:39:32 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+15:39:32 INFO  : 'configparams force-mem-access 1' command is executed.
+15:39:33 INFO  : Context for 'APU' is selected.
+15:39:33 INFO  : 'stop' command is executed.
+15:40:07 INFO  : 'ps7_init' command is executed.
+15:40:07 INFO  : 'ps7_post_config' command is executed.
+15:40:08 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:40:08 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+15:40:08 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:40:09 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+15:40:09 INFO  : 'configparams force-mem-access 0' command is executed.
+15:40:09 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+15:40:10 INFO  : Memory regions updated for context APU
+15:40:10 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:40:10 INFO  : 'con' command is executed.
+15:40:10 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+15:40:10 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+15:41:26 INFO  : Disconnected from the channel tcfchan#10.
+15:41:27 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+15:41:27 INFO  : 'fpga -state' command is executed.
+15:41:27 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+15:41:28 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+15:41:28 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+15:41:28 INFO  : 'jtag frequency' command is executed.
+15:41:28 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+15:41:29 INFO  : Context for 'APU' is selected.
+15:41:30 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+15:41:30 INFO  : 'configparams force-mem-access 1' command is executed.
+15:41:30 INFO  : Context for 'APU' is selected.
+15:41:31 INFO  : 'stop' command is executed.
+15:42:03 INFO  : 'ps7_init' command is executed.
+15:42:04 INFO  : 'ps7_post_config' command is executed.
+15:42:04 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:42:05 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+15:42:05 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:42:06 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+15:42:06 INFO  : 'configparams force-mem-access 0' command is executed.
+15:42:06 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+15:42:06 INFO  : Memory regions updated for context APU
+15:42:07 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+15:42:07 INFO  : 'con' command is executed.
+15:42:07 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+15:42:07 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+16:03:25 INFO  : Disconnected from the channel tcfchan#11.
+16:03:26 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+16:03:27 INFO  : 'fpga -state' command is executed.
+16:03:27 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+16:03:27 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+16:03:27 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+16:03:27 INFO  : 'jtag frequency' command is executed.
+16:03:27 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+16:03:28 INFO  : Context for 'APU' is selected.
+16:03:29 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+16:03:30 INFO  : 'configparams force-mem-access 1' command is executed.
+16:03:30 INFO  : Context for 'APU' is selected.
+16:03:30 INFO  : 'stop' command is executed.
+16:04:04 INFO  : 'ps7_init' command is executed.
+16:04:05 INFO  : 'ps7_post_config' command is executed.
+16:04:05 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+16:04:05 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+16:04:06 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+16:04:06 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+16:04:06 INFO  : 'configparams force-mem-access 0' command is executed.
+16:04:06 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+16:04:07 INFO  : Memory regions updated for context APU
+16:04:07 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+16:04:07 INFO  : 'con' command is executed.
+16:04:07 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+16:04:07 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+16:11:52 INFO  : Disconnected from the channel tcfchan#12.
+16:11:54 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+16:11:54 INFO  : 'fpga -state' command is executed.
+16:11:54 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+16:11:54 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+16:11:54 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+16:11:54 INFO  : 'jtag frequency' command is executed.
+16:11:54 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+16:11:55 INFO  : Context for 'APU' is selected.
+16:11:57 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+16:11:57 INFO  : 'configparams force-mem-access 1' command is executed.
+16:11:57 INFO  : Context for 'APU' is selected.
+16:11:58 INFO  : 'stop' command is executed.
+16:12:34 INFO  : 'ps7_init' command is executed.
+16:12:35 INFO  : 'ps7_post_config' command is executed.
+16:12:35 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+16:12:35 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+16:12:36 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+16:12:36 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+16:12:36 INFO  : 'configparams force-mem-access 0' command is executed.
+16:12:36 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+16:12:37 INFO  : Memory regions updated for context APU
+16:12:38 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+16:12:38 INFO  : 'con' command is executed.
+16:12:38 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+16:12:38 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+16:13:30 INFO  : Disconnected from the channel tcfchan#13.
+16:13:31 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+16:13:31 INFO  : 'fpga -state' command is executed.
+16:13:31 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+16:13:32 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+16:13:32 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+16:13:32 INFO  : 'jtag frequency' command is executed.
+16:13:32 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+16:13:32 INFO  : Context for 'APU' is selected.
+16:13:34 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+16:13:34 INFO  : 'configparams force-mem-access 1' command is executed.
+16:13:34 INFO  : Context for 'APU' is selected.
+16:13:35 INFO  : 'stop' command is executed.
+16:14:08 INFO  : 'ps7_init' command is executed.
+16:14:08 INFO  : 'ps7_post_config' command is executed.
+16:14:09 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+16:14:09 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+16:14:09 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+16:14:10 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+16:14:10 INFO  : 'configparams force-mem-access 0' command is executed.
+16:14:10 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+16:14:11 INFO  : Memory regions updated for context APU
+16:14:11 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+16:14:11 INFO  : 'con' command is executed.
+16:14:11 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+16:14:11 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+16:18:59 INFO  : Disconnected from the channel tcfchan#14.
+16:19:00 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+16:19:00 INFO  : 'fpga -state' command is executed.
+16:19:00 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+16:19:01 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+16:19:01 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+16:19:01 INFO  : 'jtag frequency' command is executed.
+16:19:01 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+16:19:02 INFO  : Context for 'APU' is selected.
+16:19:03 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+16:19:03 INFO  : 'configparams force-mem-access 1' command is executed.
+16:19:03 INFO  : Context for 'APU' is selected.
+16:19:04 INFO  : 'stop' command is executed.
+16:19:37 INFO  : 'ps7_init' command is executed.
+16:19:38 INFO  : 'ps7_post_config' command is executed.
+16:19:38 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+16:19:39 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+16:19:39 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+16:19:39 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+16:19:39 INFO  : 'configparams force-mem-access 0' command is executed.
+16:19:39 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+16:19:40 INFO  : Memory regions updated for context APU
+16:19:41 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+16:19:41 INFO  : 'con' command is executed.
+16:19:41 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+16:19:41 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+16:59:21 INFO  : Disconnected from the channel tcfchan#15.
+16:59:44 INFO  : Registering command handlers for SDK TCF services
+16:59:44 INFO  : Launching XSCT server: xsct.bat -interactive D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\temp_xsdb_launch_script.tcl
+16:59:46 INFO  : XSCT server has started successfully.
+16:59:46 INFO  : Successfully done setting XSCT server connection channel  
+16:59:46 INFO  : Processing command line option -hwspec D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper.hdf.
+16:59:46 INFO  : Successfully done setting SDK workspace  
+16:59:46 INFO  : Checking for hwspec changes in the project spi_master_wrapper_hw_platform_0.
+20:38:17 INFO  : Registering command handlers for SDK TCF services
+20:38:17 INFO  : Launching XSCT server: xsct.bat -interactive D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\temp_xsdb_launch_script.tcl
+20:38:18 INFO  : XSCT server has started successfully.
+20:38:18 INFO  : Successfully done setting XSCT server connection channel  
+20:38:18 INFO  : Successfully done setting SDK workspace  
+20:38:18 INFO  : Processing command line option -hwspec D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper.hdf.
+20:38:18 INFO  : Checking for hwspec changes in the project spi_master_wrapper_hw_platform_0.
+20:53:23 INFO  : Connected to target on host 'lseserver.ddns.net' and port '3121'.
+20:53:25 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+20:53:34 INFO  : FPGA configured successfully with bitstream "D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/spi_master_wrapper.bit"
+20:54:56 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA" && level==0} -index 1' command is executed.
+20:54:56 INFO  : 'fpga -state' command is executed.
+20:54:57 INFO  : Connected through redirection to target on host 'lseserver.ddns.net' and port '3121'.
+20:54:58 WARN  : SDK version '2018.1' doesn't match hw_server version '2023.2'. Some debug features may not work.
+20:54:58 INFO  : Jtag cable 'Digilent Arty Z7 003017A4C8ABA' is selected.
+20:54:58 INFO  : 'jtag frequency' command is executed.
+20:54:58 INFO  : Sourcing of 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl' is done.
+20:54:59 INFO  : Context for 'APU' is selected.
+20:54:59 INFO  : Hardware design information is loaded from 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf'.
+20:54:59 INFO  : 'configparams force-mem-access 1' command is executed.
+20:54:59 INFO  : Context for 'APU' is selected.
+20:55:00 INFO  : 'stop' command is executed.
+20:55:33 INFO  : 'ps7_init' command is executed.
+20:55:34 INFO  : 'ps7_post_config' command is executed.
+20:55:34 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:55:34 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+20:55:35 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:55:35 INFO  : The application 'D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf' is downloaded to processor 'ps7_cortexa9_0'.
+20:55:35 INFO  : 'configparams force-mem-access 0' command is executed.
+20:55:35 INFO  : ----------------XSDB Script----------------
+connect -path [list tcp::1534 tcp:lseserver.ddns.net:3121]
+source D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+loadhw -hw D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+dow D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master/Debug/spi_master.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+20:55:36 INFO  : Memory regions updated for context APU
+20:55:36 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+20:55:36 INFO  : 'con' command is executed.
+20:55:36 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Arty Z7 003017A4C8ABA"} -index 0
+con
+----------------End of Script----------------
+
+20:55:36 INFO  : Launch script is exported to file 'D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\.sdk\launch_scripts\xilinx_c-c++_application_(system_debugger)\system_debugger_using_debug_spi_master.elf_on_local.tcl'
+21:31:26 INFO  : Disconnected from the channel tcfchan#2.
+18:31:05 INFO  : Registering command handlers for SDK TCF services
+18:31:05 INFO  : Launching XSCT server: xsct.bat -interactive D:\CESE\5B2025\MyS\trabajo_final\Sintesis\spi_master.sdk\temp_xsdb_launch_script.tcl
+18:31:07 INFO  : XSCT server has started successfully.
+18:31:10 INFO  : Successfully done setting XSCT server connection channel  
+18:31:10 INFO  : Successfully done setting SDK workspace  
+18:31:10 INFO  : Processing command line option -hwspec D:/CESE/5B2025/MyS/trabajo_final/Sintesis/spi_master.sdk/spi_master_wrapper.hdf.
+18:31:10 INFO  : Checking for hwspec changes in the project spi_master_wrapper_hw_platform_0.

@@ -1,0 +1,47 @@
+/*
+ * main.c
+ *
+ *  Prueba básica
+ */
+#include "xparameters.h"
+#include "spi_master_ip.h"
+#include "xil_io.h"
+#include "xil_printf.h"
+
+#define SPI_BASEADDR	XPAR_SPI_MASTER_IP_1_S_AXI_BASEADDR
+#define REG0_TX_DATA	SPI_MASTER_IP_S_AXI_SLV_REG0_OFFSET
+#define REG1_TX_DV		SPI_MASTER_IP_S_AXI_SLV_REG1_OFFSET
+#define REG2_TX_RDY		SPI_MASTER_IP_S_AXI_SLV_REG2_OFFSET
+#define REG3_RX_DATA	SPI_MASTER_IP_S_AXI_SLV_REG3_OFFSET
+#define REG4_RX_DV		SPI_MASTER_IP_S_AXI_SLV_REG4_OFFSET
+
+#define TEST_BYTE		0xA5
+
+uint8_t tx_data = 0x00;
+uint8_t rx_data;
+uint32_t reg;
+
+int main(void)
+{
+	xil_printf("---- Prueba SPI Master IP ----\r\n");
+    while (1)
+    {
+    	if(SPI_MASTER_IP_mReadReg(SPI_BASEADDR,REG2_TX_RDY)){							// periférico listo?
+    		SPI_MASTER_IP_mWriteReg(SPI_BASEADDR, REG0_TX_DATA, (uint32_t)tx_data);		// tx data
+    		SPI_MASTER_IP_mWriteReg(SPI_BASEADDR, REG1_TX_DV, 0x1U);					// data valid true
+    		SPI_MASTER_IP_mWriteReg(SPI_BASEADDR, REG1_TX_DV, 0x0U);					// data valid false
+    	}
+
+    	while(SPI_MASTER_IP_mReadReg(SPI_BASEADDR,REG4_RX_DV) != 0x1U){}				// espero dato de entrada válido
+    	SPI_MASTER_IP_mWriteReg(SPI_BASEADDR, REG4_RX_DV, 0x0U);
+
+    	rx_data = (uint8_t)SPI_MASTER_IP_mReadReg(SPI_BASEADDR,REG3_RX_DATA);
+
+    	xil_printf("TX = 0x%02X, RX = 0x%02X\r\n", tx_data, rx_data);
+    	for (uint32_t i=0; i<0x0FFFFFFF; i++);
+
+    	tx_data++;
+    }
+
+    return 0;
+}

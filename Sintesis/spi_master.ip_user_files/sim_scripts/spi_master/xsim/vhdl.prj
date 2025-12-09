@@ -1,0 +1,16 @@
+vhdl xil_defaultlib  \
+"../../../bd/spi_master/ip/spi_master_rst_ps7_0_100M_0/sim/spi_master_rst_ps7_0_100M_0.vhd" \
+"../../../bd/spi_master/ip/spi_master_ila_0_1/sim/spi_master_ila_0_1.vhd" \
+"../../../bd/spi_master/sim/spi_master.vhd" \
+"../../../bd/spi_master/ipshared/4df4/hdl/spi_master_ip_v1_0_S_AXI.vhd" \
+"../../../bd/spi_master/ipshared/4df4/src/spi_pkg.vhd" \
+"../../../bd/spi_master/ipshared/4df4/src/clk_gen.vhd" \
+"../../../bd/spi_master/ipshared/4df4/src/cs_ctrl.vhd" \
+"../../../bd/spi_master/ipshared/4df4/src/miso_capture.vhd" \
+"../../../bd/spi_master/ipshared/4df4/src/mosi_transfer.vhd" \
+"../../../bd/spi_master/ipshared/4df4/src/spi_core.vhd" \
+"../../../bd/spi_master/ipshared/4df4/src/spi_top.vhd" \
+"../../../bd/spi_master/ipshared/4df4/hdl/spi_master_ip_v1_0.vhd" \
+"../../../bd/spi_master/ip/spi_master_spi_master_ip_1_0/sim/spi_master_spi_master_ip_1_0.vhd" \
+
+nosort
